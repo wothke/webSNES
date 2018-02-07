@@ -1,8 +1,10 @@
-# websnes (Web plugin of libGME - see live demo: http://www.wothke.ch/websnes/)
+# websnes (Web plugin of libGME)
 
 In this case the WebAudio version of libGme had already been done by somebody else: http://onakasuita.org/jsgme/
 	
 This project just provides the adapter/glue code to use it with my generic WebAudio player (see separate project).
+
+A live demo can be found here: http://www.wothke.ch/websnes/
 
 ## License
 
