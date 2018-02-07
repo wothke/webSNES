@@ -63,7 +63,7 @@ LibGMEDisplayAccessor = (function(){ var $this = function (doGetSongInfo) {
 		$this.base.call(this, doGetSongInfo);
 	}; 
 	extend(DisplayAccessor, $this, {
-		getDisplayTitle: function() 	{ return "libgme";},
+		getDisplayTitle: function() 	{ return "webSNES";},
 		getDisplaySubtitle: function() 	{ return "lets play some music..";},
 		getDisplayLine1: function() { return this.getSongInfo().game;},
 		getDisplayLine2: function() { return this.getSongInfo().author; },
@@ -90,7 +90,7 @@ function init() {
 		
 	// --------------------------- UI - basic player controls --------------
 	var songs = [
-		'music/add-your-music-here.spc',
+		'music/sb2-01.spc',
 	];
 	playerControls= new BasicPlayerControls(songs, true, false,
 				(function(someSong) {
