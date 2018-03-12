@@ -35,7 +35,9 @@ LibGmeBackendAdapter = (function(){ var $this = function () {
 		this.numSamples = 1024 * 8;
 		this.numChannels = 2;
 		
-		this.buffer = backend_SNES.Module.allocate(this.numSamples * this.numChannels, "i32", backend_SNES.Module.ALLOC_STATIC);
+		this.hesHack = 32;	// bloody hack: there seems to be some bug in the HES emulation that causes irritating noise at buffer boundary.. 
+
+		this.buffer = backend_SNES.Module.allocate(this.numSamples * this.numChannels+this.hesHack, "i32", backend_SNES.Module.ALLOC_STATIC);
 		
 		this.currentTrack =0;
 
@@ -46,11 +48,11 @@ LibGmeBackendAdapter = (function(){ var $this = function () {
 		getAudioBuffer: function() {
 			var ptr=  this.buffer;			
 			// make it a this.Module.HEAP16 pointer
-			return ptr >> 1;	// 2 x 16 bit samples			
+			return (ptr >> 1) +this.hesHack;	// 2 x 16 bit samples			
 		},
 		getAudioBufferLength: function() {
 			var len= this.numSamples;
-			return len;
+			return len -(this.hesHack>>1);
 		},
 		computeAudioSamples: function() {
 			// gme_play: Generate 'count' 16-bit signed samples info 'out'. Output is in stereo.
