@@ -60,7 +60,7 @@ std::string trim(const std::string& str) {
 Int16 sample_buffer[SAMPLE_BUF_SIZE * CHANNELS];
 int samples_available= 0;
 
-char* info_texts[7];
+char* info_texts[8];
 
 
 #define TEXT_MAX	255
@@ -71,6 +71,7 @@ char comment_str[TEXT_MAX];
 char copyright_str[TEXT_MAX];
 char dumper_str[TEXT_MAX];
 char system_str[TEXT_MAX];
+char tracks_str[TEXT_MAX];
 
 #define RAW_INFO_MAX	1024
 char raw_info_buffer[RAW_INFO_MAX];
@@ -84,6 +85,7 @@ struct StaticBlock {
 		info_texts[4]= copyright_str;
 		info_texts[5]= dumper_str;
 		info_texts[6]= system_str;
+		info_texts[7]= tracks_str;
     }
 };
 
@@ -203,6 +205,7 @@ int update_info(int track) {
 	snprintf(copyright_str, TEXT_MAX, "%s", track_info_->copyright);	
 	snprintf(dumper_str, TEXT_MAX, "%s", track_info_->dumper);	
 	snprintf(system_str, TEXT_MAX, "%s", track_info_->system);	
+	snprintf(tracks_str, TEXT_MAX, "%s", track_count());	
 	
 	return 0;
 }

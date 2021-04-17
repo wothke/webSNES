@@ -314,6 +314,10 @@ void Spc_Dsp::run( int clock_count )
 					int l = output * v->volume [0];
 					int r = output * v->volume [1];
 					
+					// XXX this seems to be the place where the contributions of the
+					// different voices are summed up and where respective "scope" data
+					// could be recorded
+					
 					main_out_l += l;
 					main_out_r += r;
 					

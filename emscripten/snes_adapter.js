@@ -105,11 +105,12 @@ SNESBackendAdapter = (function(){ var $this = function () {
 					copyright: String, 
 					dumper: String, 
 					system: String, 
+					tracks: String, 
 					};
 		},
 		
 		updateSongInfo: function(filename, result) {
-			var numAttr= 7;
+			var numAttr= 8;
 			var ret = this.Module.ccall('emu_get_track_info', 'number');
 
 			// the automatic string creation fucks up the UNICODE chars beyond 
@@ -118,9 +119,10 @@ SNESBackendAdapter = (function(){ var $this = function () {
 			result.title= this.Module.Pointer_stringify(array[0]);
 			result.artist= this.Module.Pointer_stringify(array[1]);
 			result.game= this.Module.Pointer_stringify(array[2]);
-			result.comment= this.Module.Pointer_stringify(array[5]);
-			result.copyright= this.Module.Pointer_stringify(array[6]);
-			result.dumper= this.Module.Pointer_stringify(array[7]);
-			result.system= this.Module.Pointer_stringify(array[8]);
+			result.comment= this.Module.Pointer_stringify(array[3]);
+			result.copyright= this.Module.Pointer_stringify(array[4]);
+			result.dumper= this.Module.Pointer_stringify(array[5]);
+			result.system= this.Module.Pointer_stringify(array[6]);
+			result.tracks= this.Module.Pointer_stringify(array[7]);
 		}
 	});	return $this; })();
